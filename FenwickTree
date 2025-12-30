@@ -1,0 +1,25 @@
+FENWICK TREE AND SOME MOST COMMON APPLICATION
++ Counting number of distint number in a range.
++ Prefix sum
++ Counting Inversion
+  In each position, remember:
+  + How many pairs of inversions before current position
+  + How many pair of number i before that having a[i] > a[j]
++ Counting number of elements smaller than a number in a array
+--------------------------------------------------------------------------------------------------------------------
+CODE:
+void update(int x,int val){
+    while(x <= n){
+        bit[x] = (bit[x]+ val) % MOD;
+        x += x&-x;
+    }
+}
+ll sum(int x){
+    ll res  = 0;
+    while(x > 0){
+        res = (res + bit[x]) % MOD;
+        x -= x&-x;
+    }
+    return res;
+}
+    
