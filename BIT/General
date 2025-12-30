@@ -22,4 +22,26 @@ ll sum(int x){
     }
     return res;
 }
+void compress(){ 
+ int cur = 0;
+    for(auto &x : mp) x.second = ++cur;
+    FOR(i,1,n) a[i] = mp[a[i]];
+    FOR(i,1,n) cout << a[i]<< " ";
+}
+
+int find_k(int k){
+    int step = 1;
+    int idx = 0;
+    while((step << 1) <= n) step <<= 1;
+    for(int pw = step; pw > 0; pw >>= 1){
+        int nxt = idx + pw;
+        if(nxt <= n && bit[nxt] < k){
+            k -= bit[nxt];
+            idx = nxt;
+        }
+    }
+    return idx + 1;
+}
+  
+
     
